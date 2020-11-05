@@ -37,13 +37,89 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
     let stageW = frame.width;
     let stageH = frame.height;
 
+// //add daymode
+//     const daymode = new Container();
+//     dayBackground = new Rectangle({
+//         width: stageW,
+//         height:stageH,
+//         color:"white"
+//     });
+//     dayBackground.addTo(daymode).center();
+
+//     const moonDay = new Label({
+//         text: "M            N",
+//         size:100,
+//         color:"black",
+//         font: "Antic Slab",
+//         align: "left"})
+//         .addTo(daymode).center();
+
+//     const cafeday = new Label({
+//         text: "c  a  f  é",
+//         size: 30,
+//         color: "black",
+//         font:"Antic Slab",
+//         align: "left"})
+//         .addTo(daymode).center().mov(0,80);
+
+//         const circle3 = new Circle({
+//         color:"black",
+//         radius: 40})
+//         .addTo(daymode)
+//         .centerReg()
+//         .mov(-80);
+
+//     circle3.startX = circle3.x;
 
 
-    //all night mode objects
-    const nightmode = new Container(stageW,stageH)
-    .addTo(stage);
+//     const circle4 = new Circle({
+//         color: "white",
+//         radius: 40,
+//         borderWidth: 3,
+//         borderColor: "black"})
+//         .addTo(daymode)
+//         .centerReg()
+//         .mov(80);
 
-    //const daymode = new Container(stageW,stageH)
+//     circle4.startX = circle4.x;
+
+//     const sliderButtonDay = new Button({
+//         label:"",
+//         width:20,
+//         height:20,
+//         backgroundColor:"white",
+//         rollBackgroundColor:"#858585",
+//         corner:10
+//     });
+
+//     const phasesDay = new Slider({
+//         min: 0,
+//         max:160,
+//         barLength: 300,
+//         barWidth: 1,
+//         barColor: "#858585",
+//         currentValue: 0,
+//         useTicks: false,
+//         button: sliderButtonDay
+//     }).addTo(daymode).centerReg().mov(0,120);
+
+//     phasesDay.change(e=>{
+//         let slider = e.target;
+//         circle4.x = (circle4.startX - slider.currentValue);
+//         circle3.x = (circle3.startX + slider.currentValue);
+//     });
+
+//     //all night mode objects
+//     const nightmode = new Container(stageW,stageH)
+//     .addTo();
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    // const nightBackground = new Rectangle({
+    //     width:"stageW",
+    //     height:"stageH",
+    //     color:black
+    // }).addTo(nightmode).center();
 
     const moon = new Label({
         text: "M            N",
@@ -51,7 +127,7 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
         color:"white",
         font: "Antic Slab",
         align: "left"})
-        .addTo(nightmode).center();
+        .addTo().center();
     
     const cafe = new Label({
         text: "c  a  f  é",
@@ -59,12 +135,12 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
         color: "white",
         font:"Antic Slab",
         align: "left"})
-        .addTo(nightmode).center().mov(0,80);
+        .addTo().center().mov(0,80);
 
     const circle2 = new Circle({
         color:"white",
         radius: 40})
-        .addTo(nightmode)
+        .addTo()
         .center()
         .mov(-80);
 
@@ -76,7 +152,7 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
         radius: 40,
         borderWidth: 3,
         borderColor: "white"})
-        .addTo(nightmode)
+        .addTo()
         .center()
         .mov(80);
 
@@ -100,7 +176,7 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
         currentValue: 0,
         useTicks: false,
         button: sliderButton
-    }).addTo(nightmode).center().mov(0,120);
+    }).addTo().centerReg().mov(0,120);
 
     phases.change(e=>{
         let slider = e.target;
@@ -121,11 +197,26 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
         if(toggles.toggled == true){
             zog("day");
             //lightmode on
-            nightmode.removeFrom(stage);
-            //daymode.addTo();
+            frame.color= white;
+            circle1.color = white;
+            circle1.borderColor = black;
+            circle2.color = black;
+            moon.color = black;
+            cafe.color = black;
+
+            // nightmode.removeFrom(stage);
+            // daymode.addTo(stage);
+            // toggle.addTo(stage);
         }else{
             zog("night");
-            nightmode.addTo();
+            frame.color= black;
+            circle1.color = black;
+            circle1.borderColor = white;
+            circle2.color = white;
+            moon.color = white;
+            cafe.color = white;
+            // daymode.removeFrom();
+            // nightmode.addTo();
         }
     });
 
