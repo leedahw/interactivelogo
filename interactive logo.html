@@ -25,7 +25,7 @@ const scaling = "fit"; // this will resize to fit inside the screen dimensions
 const width = 1024;
 const height = 768;
 const color = black; // ZIM colors like green, blue, pink, faint, clear, etc.
-const outerColor = black; // any HTML colors like "violet", "#333", etc. are fine to use
+const outerColor = white; // any HTML colors like "violet", "#333", etc. are fine to use
 const assets = [{src:"https://fonts.googleapis.com/css2?family=Antic+Slab&display=swap"}];
 
 
@@ -120,7 +120,7 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
     //     height:"stageH",
     //     color:black
     // }).addTo(nightmode).center();
-
+//new Grid();
     const moon = new Label({
         text: "M            N",
         size:100,
@@ -135,7 +135,7 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
         color: "white",
         font:"Antic Slab",
         align: "left"})
-        .addTo().center().mov(0,80);
+        .addTo().centerReg().mov(0,80);
 
     const circle2 = new Circle({
         color:"white",
@@ -172,7 +172,7 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
         max:160,
         barLength: 300,
         barWidth: 1,
-        barColor: "#858585",
+        barColor: "#bdbdbd",
         currentValue: 0,
         useTicks: false,
         button: sliderButton
@@ -188,9 +188,9 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
 
     const toggle = new Toggle({
         backgroundColor:"#e6e6e6",
-        toggleBackgroundColor:"#858585",
+        toggleBackgroundColor:"#bdbdbd",
         shadowColor:-1
-    }).sca(.5).pos(100,100,LEFT,TOP);
+    }).sca(.5).centerReg().pos(175,275,LEFT,TOP);
 
     toggle.change(e=>{
         let toggles = e.target;
@@ -203,11 +203,8 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
             circle2.color = black;
             moon.color = black;
             cafe.color = black;
-
-            // nightmode.removeFrom(stage);
-            // daymode.addTo(stage);
-            // toggle.addTo(stage);
         }else{
+            //nightmode on
             zog("night");
             frame.color= black;
             circle1.color = black;
@@ -215,8 +212,6 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
             circle2.color = white;
             moon.color = white;
             cafe.color = white;
-            // daymode.removeFrom();
-            // nightmode.addTo();
         }
     });
 
