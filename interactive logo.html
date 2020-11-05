@@ -37,31 +37,13 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
     let stageW = frame.width;
     let stageH = frame.height;
 
-    // see https://zimjs.com/learn.html for video and code tutorials
-    // see https://zimjs.com/docs.html for documentation
-    // see https://zimjs.com/bits.html for 64 Interactive Media techniques
 
-    // *** NOTE: ZIM Cat defaults to time in seconds
-    // All previous versions, examples, videos, etc. have time in milliseconds
-    // This can be set back with TIME = "milliseconds" but we suggest you give it a try!
-    // There will be a warning in the conslole if your animation is not moving ;-)
 
-    // put your code here (you can delete this sample code)
+    //all night mode objects
+    const nightmode = new Container(stageW,stageH)
+    .addTo(stage);
 
-    // with chaining - can also assign to a variable for later access
-
-    // STYLE = {
-    // type:{
-    //     Frame:{
-    //         color:white
-    //         },
-    //     Label:{
-    //         add:true,
-    //         color:black
-    //         }  
-    //     }
-    // }
-        
+    //const daymode = new Container(stageW,stageH)
 
     const moon = new Label({
         text: "M            N",
@@ -69,7 +51,7 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
         color:"white",
         font: "Antic Slab",
         align: "left"})
-        .center();
+        .addTo(nightmode).center();
     
     const cafe = new Label({
         text: "c  a  f  é",
@@ -77,11 +59,12 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
         color: "white",
         font:"Antic Slab",
         align: "left"})
-        .center().mov(0,80);
+        .addTo(nightmode).center().mov(0,80);
 
     const circle2 = new Circle({
         color:"white",
         radius: 40})
+        .addTo(nightmode)
         .center()
         .mov(-80);
 
@@ -93,6 +76,7 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
         radius: 40,
         borderWidth: 3,
         borderColor: "white"})
+        .addTo(nightmode)
         .center()
         .mov(80);
 
@@ -116,7 +100,7 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
         currentValue: 0,
         useTicks: false,
         button: sliderButton
-    }).center().mov(0,120);
+    }).addTo(nightmode).center().mov(0,120);
 
     phases.change(e=>{
         let slider = e.target;
@@ -124,25 +108,26 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
         circle2.x = (circle2.startX + slider.currentValue);
     });
 
-    // //toggle day/night mode???
+    //toggle day/night mode???
 
-    // const toggle = new Toggle({
-    //     backgroundColor:"#e6e6e6",
-    //     toggleBackgroundColor:"#858585",
-    //     shadowColor:-1
-    // }).sca(.5).pos(100,100,LEFT,TOP);
+    const toggle = new Toggle({
+        backgroundColor:"#e6e6e6",
+        toggleBackgroundColor:"#858585",
+        shadowColor:-1
+    }).sca(.5).pos(100,100,LEFT,TOP);
 
-    // toggle.change(e=>{
-    //     let toggles = e.target;
-    //     if(toggles.toggled == true){
-    //         zog("day");
-    //         //lightmode on
-            
-    //     }else{
-
-    //         zog("night");
-    //     }
-    // });
+    toggle.change(e=>{
+        let toggles = e.target;
+        if(toggles.toggled == true){
+            zog("day");
+            //lightmode on
+            nightmode.removeFrom(stage);
+            //daymode.addTo();
+        }else{
+            zog("night");
+            nightmode.addTo();
+        }
+    });
 
     // without chaining
     // const circle = new Circle(100, pink);
