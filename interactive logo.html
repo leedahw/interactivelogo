@@ -26,10 +26,11 @@ const width = 1024;
 const height = 768;
 const color = black; // ZIM colors like green, blue, pink, faint, clear, etc.
 const outerColor = white; // any HTML colors like "violet", "#333", etc. are fine to use
-const assets = [{src:"https://fonts.googleapis.com/css2?family=Antic+Slab&display=swap"}];
+const assets = [{src:"https://fonts.googleapis.com/css2?family=Antic+Slab&display=swap"},"icon.png"];
+const path = "assets/";
 
 
-const frame = new Frame(scaling, width, height, color, outerColor, assets);
+const frame = new Frame(scaling, width, height, color, outerColor, assets, path);
 frame.on("ready", () => { // ES6 Arrow Function - like function(){}
     zog("ready from ZIM Frame"); // logs in console (F12 - choose console)
 
@@ -37,108 +38,25 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
     let stageW = frame.width;
     let stageH = frame.height;
 
-// //add daymode
-//     const daymode = new Container();
-//     dayBackground = new Rectangle({
-//         width: stageW,
-//         height:stageH,
-//         color:"white"
-//     });
-//     dayBackground.addTo(daymode).center();
-
-//     const moonDay = new Label({
-//         text: "M            N",
-//         size:100,
-//         color:"black",
-//         font: "Antic Slab",
-//         align: "left"})
-//         .addTo(daymode).center();
-
-//     const cafeday = new Label({
-//         text: "c  a  f  é",
-//         size: 30,
-//         color: "black",
-//         font:"Antic Slab",
-//         align: "left"})
-//         .addTo(daymode).center().mov(0,80);
-
-//         const circle3 = new Circle({
-//         color:"black",
-//         radius: 40})
-//         .addTo(daymode)
-//         .centerReg()
-//         .mov(-80);
-
-//     circle3.startX = circle3.x;
-
-
-//     const circle4 = new Circle({
-//         color: "white",
-//         radius: 40,
-//         borderWidth: 3,
-//         borderColor: "black"})
-//         .addTo(daymode)
-//         .centerReg()
-//         .mov(80);
-
-//     circle4.startX = circle4.x;
-
-//     const sliderButtonDay = new Button({
-//         label:"",
-//         width:20,
-//         height:20,
-//         backgroundColor:"white",
-//         rollBackgroundColor:"#858585",
-//         corner:10
-//     });
-
-//     const phasesDay = new Slider({
-//         min: 0,
-//         max:160,
-//         barLength: 300,
-//         barWidth: 1,
-//         barColor: "#858585",
-//         currentValue: 0,
-//         useTicks: false,
-//         button: sliderButtonDay
-//     }).addTo(daymode).centerReg().mov(0,120);
-
-//     phasesDay.change(e=>{
-//         let slider = e.target;
-//         circle4.x = (circle4.startX - slider.currentValue);
-//         circle3.x = (circle3.startX + slider.currentValue);
-//     });
-
-//     //all night mode objects
-//     const nightmode = new Container(stageW,stageH)
-//     .addTo();
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // const nightBackground = new Rectangle({
-    //     width:"stageW",
-    //     height:"stageH",
-    //     color:black
-    // }).addTo(nightmode).center();
 //new Grid();
     const moon = new Label({
         text: "M            N",
         size:100,
-        color:"white",
+        color:white,
         font: "Antic Slab",
         align: "left"})
         .addTo().center();
-    
+
     const cafe = new Label({
         text: "c  a  f  é",
         size: 30,
-        color: "white",
+        color: white,
         font:"Antic Slab",
         align: "left"})
         .addTo().centerReg().mov(0,80);
 
     const circle2 = new Circle({
-        color:"white",
+        color:white,
         radius: 40})
         .addTo()
         .center()
@@ -148,10 +66,10 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
 
 
     const circle1 = new Circle({
-        color: "black",
+        color: black,
         radius: 40,
         borderWidth: 3,
-        borderColor: "white"})
+        borderColor: white})
         .addTo()
         .center()
         .mov(80);
@@ -162,7 +80,7 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
         label:"",
         width:20,
         height:20,
-        backgroundColor:"white",
+        backgroundColor:white,
         rollBackgroundColor:"#858585",
         corner:10
     });
@@ -215,10 +133,7 @@ frame.on("ready", () => { // ES6 Arrow Function - like function(){}
         }
     });
 
-    // without chaining
-    // const circle = new Circle(100, pink);
-    // circle.center();
-    // circle.drag();
+    asset("icon.png").sca(.025).centerReg().loc(toggle).mov(-35).noMouse();
 
     stage.update(); // this is needed to show any changes
 
